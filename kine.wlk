@@ -1,56 +1,56 @@
 class Paciente {
   var edad
-  var fortaleza
+  var fortalezaMuscular
   var dolor
 
   method edad() = edad
-  method cumplirAnio() {
+  method fortalezaMuscular() = fortalezaMuscular 
+  method dolor() = dolor
+  method cumplirAnios(){
     edad += 1
-  }  
+  }
+  method disminuirDolor(unValor) {
+    dolor = (dolor - unValor).max(0)
+  }
+  method aumentarFortaleza(unValor) {
+    fortalezaMuscular += unValor
+  }
   method puedeUsar(unAparato) = unAparato.puedeSerUsadoPor(self)
   method usar(unAparato) {
     if (self.puedeUsar(unAparato))
       unAparato.consecuenciaDelUso(self)
   }
-  method disminuirDolor(unValor) {
-    dolor = 0.max(dolor - unValor)
-  }   
-  method aumentarFortaleza(unValor) {
-    fortaleza += unValor
-  }
 }
 
 class Aparato {
+  method consecuenciaDelUso(unPaciente)
   method puedeSerUsadoPor(unPaciente)
-  method consecuenciaDeUso(unPaciente) 
 }
 
 class Magneto inherits Aparato {
-  var magneto
-  override method consecuenciaDeUso(unPaciente) {
+  var magneto= 800
+  override method consecuenciaDelUso(unPaciente){
     unPaciente.disminuirDolor(unPaciente.dolor() * 0.1)
     magneto -= 1
   }
-  override method puedeSerUsadoPor(unPaciente){
-    return true
-  }
+  override method puedeSerUsadoPor(unPaciente) = true
 }
 
 class Bicicleta inherits Aparato {
-  override method consecuenciaDeUso(unPaciente) {
+  override method consecuenciaDelUso(unPaciente){
     unPaciente.disminuirDolor(4)
     unPaciente.aumentarFortaleza(3)
   }
-  override method puedeSerUsadoPor(unPaciente){
-    unPaciente.edad() > 8
+  override method puedeSerUsadoPor(unPaciente) {
+    return unPaciente.edad() > 8
   }
 }
 
 class Minitramp inherits Aparato {
-  override method consecuenciaDeUso(unPaciente) {
+  override method consecuenciaDelUso(unPaciente){
     unPaciente.aumentarFortaleza(unPaciente.edad() * 0.1)
   }
-  override method puedeSerUsadoPor(unPaciente){
-    unPaciente.dolor() < 20
-  }
+  override method puedeSerUsadoPor(unPaciente) {
+    return unPaciente.dolor() < 20
+  }  
 }
