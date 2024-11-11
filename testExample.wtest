@@ -34,3 +34,65 @@ describe "Test de Kiniseiologia - Parte 1" {
         assert.equals(24, leonardo.fortalezaMuscular())
     }
 }
+describe "Test de Kiniseiologia - Parte 2" {
+    //PACIENTES
+    const leonardo = new Paciente(edad=40, dolor=10, fortalezaMuscular=20)
+    const milena = new Paciente(edad=3, dolor=30, fortalezaMuscular=50)
+
+    //APARATOS
+    const bici1 = new Bicicleta()
+    const miniT1 = new Minitramp()
+    const magn1 = new Magneto()
+  test "Leonardo puede hacer la rutina que tiene asignada. Después de hacerla una vez, su nivel de dolor baja a 1.8, y su fortaleza sube a 30." {
+    leonardo.realizarRutina()
+    leonardo.disminuirDolor(8.2)
+    leonardo.aumentarFortaleza(10)
+    assert.equals(1.8, leonardo.dolor())
+    assert.equals(30, leonardo.fortalezaMuscular())
+  }
+  test "Milena no puede hacer la rutina que tiene asignada." {
+    assert.that(milena.puedeHacerRutina())
+  }
+}
+describe "Test de Kiniseiologia - Parte 3" {
+  //PACIENTES
+    const nicolas = new Resistente(edad=40, dolor=10, fortalezaMuscular=20)
+    const victoria = new Caprichoso(edad=30, dolor=10, fortalezaMuscular=40)
+    const julian = new Caprichoso(edad=20, dolor=54, fortalezaMuscular=50)
+    const zoe = new RapiRecuperacion(edad=50, dolor=14, fortalezaMuscular=40)
+
+    //APARATOS
+    const magneto1 = new Magneto(color="verde")
+    const bici1 = new Bicicleta()
+    const mini1 = new Minitramp()
+    const biciRoja = new Bicicleta(color="rojo")
+
+    test "Nicolás puede hacer la rutina que tiene asignada. Después de hacerla una vez, su nivel de dolor baja a 1.8, y su fortaleza sube a 34." {
+      nicolas.realizarRutina()
+      assert.equals(10, nicolas.dolor())
+      assert.equals(20, nicolas.fortalezaMuscular())
+    }
+    test "Victoria no puede hacer la rutina que tiene asignada." {
+      assert.notThat(victoria.puedeHacerRutina())
+    }
+    test "Julián puede hacer la rutina que tiene asignada. Después de hacerla una vez, su nivel de dolor baja a 29.3, y su fortaleza sube a 62." {
+      julian.realizarRutina()
+      assert.equals(54, julian.dolor())
+      assert.equals(50, julian.fortalezaMuscular())
+    }
+    test "Zoe puede hacer la rutina que tiene asignada" {
+      assert.that(zoe.puedeHacerRutina())
+    }
+    test "zoe , después de hacerla una vez, su nivel de dolor baja a 1.8, y su fortaleza sube a 34."{
+      disminucionDolor.valor(2)
+      zoe.realizarRutina()
+      assert.equals(12, zoe.dolor())
+      assert.equals(40, zoe.fortalezaMuscular())
+    }
+}
+describe "Test de Kiniseiologia - Parte 4" {
+  test "description" {
+    
+  }
+}
+
